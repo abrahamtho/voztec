@@ -1,0 +1,259 @@
+/* Normalizing the page */
+* {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Header Styles start */
+header {
+    height: 15vh;
+    display: flex;  
+}
+
+.banner-main {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+
+/* Header Styles end */
+
+/* Main Section Styles */
+main {
+    margin-top: 1%;
+    margin-left: 3%;
+    margin-right: 3%;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr; /* Three columns: sidebar, main text, right side */
+    grid-template-rows: auto auto auto; /* Three rows: side-nav, main text homepage, right side */
+    grid-template-areas:
+        "side-nav main-text right-side"
+        "side-nav main-text right-side"
+        "footer footer footer"; /* Define the areas for each section */
+    min-height: 100vh; /* Ensure the main takes at least the height of the viewport */
+    column-gap: 2%;
+}
+
+/* Side Nav Styles */
+#side-nav {
+    grid-area: side-nav;
+    border-right: 1px solid #ccc; /* Add a border to separate side-nav from main text */
+    padding-right: 10px; /* Add padding for better appearance */
+}
+
+#side-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+#side-nav li {
+    padding: 10px 10px;
+    border-bottom: 1px solid #ccc; /* Add a border between side-nav items */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+    
+}
+
+#side-nav li:hover {
+    background-color: lightgreen; /* Change background color on hover */
+}
+
+
+
+/* Nav SlideShow */
+
+.nav-slideshow {
+
+    width: 25vh;
+    height: 25vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-slide {
+    width: 25vh;
+    height: 25vh;
+    position: absolute;
+    display: flex; /* Center the content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    opacity: 0; /* Start with opacity 0 to fade in */
+    transition: opacity 0.5s; /* Add a transition for a smoother effect */
+}
+
+.nav-slide img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 30vh;
+    height: 30vh;
+    object-fit: contain;
+}
+
+
+
+/* Main Text Styles */
+#main-text-homepage {
+    grid-area: main-text;
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center items horizontally within the container */
+    padding: 20px;
+}
+
+.main-header,
+.main-text {
+    margin-bottom: 20px; /* Add space between the header and text */
+}
+
+/* Right Side Styles */
+.right-side {
+    grid-area: right-side;
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center items horizontally within the container */
+    padding: 20px;
+}
+
+
+/* Right Side Slideshow */
+
+.right-side-slideshow {
+    width: 60vh;
+    height: 40vh;   
+    position: relative;
+    margin: 0 auto;
+}
+
+.side-slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+}
+
+.side-slide img {
+    padding: 1%;
+    max-width: 100%; /* Ensure the image doesn't exceed the container */
+    max-height: 100%; /* Ensure the image doesn't exceed the container */
+    display: flex; /* Use flex for centering */
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Footer Styles */
+footer {
+    grid-area: footer;
+    text-align: center;
+    padding: 20px; /* Add padding for better appearance */
+}
+
+
+/* ---------------------------END OF HOME PAGE-------------------------------------------------- */
+
+/* --------------------------------MEDIA QUERIES below ----------------------------------- */
+
+.menu-toggle {
+  position: fixed;
+  top: 20px; /* Adjust the top position as needed */
+  left: 10px; /* Adjust the left position as needed */
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 2;
+  display: none; /* Initially hide the hamburger menu */
+  background-color: rgba(51, 51, 51, 0.6); /* Background color with 30% opacity */
+  color: white; /* Set the text color to white */
+  padding: 5px; /* Add padding for better visibility */
+  border-radius: 5px; /* Add rounded corners for a nicer look */
+}
+
+
+/* Media Queries for Mobile and Tablets - Adjust Banner Size, Hamburger Menu Styles, and Responsive Layout */
+@media only screen and (max-width: 1024px) {
+  /* Adjust Banner Size */
+  header {
+    height: 10vh; /* Adjust the height to your preference */
+  }
+
+  .banner-main {
+    object-fit: contain; /* Adjust the object-fit property for smaller screens */
+  }
+
+  /* Hamburger Menu Styles */
+  .menu-toggle {
+    font-size: 18px;
+    padding: 5px; /* Add padding for better visibility */
+  }
+
+  /* Show the hamburger menu on mobile and tablet screens */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Hide regular navigation on smaller screens */
+  #side-nav ul {
+    display: none;
+  }
+
+  /* Show the navigation when the menu toggle is clicked */
+  #side-nav.show {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    background-color: rgba(51, 51, 51, 0.6); /* Background color with 30% opacity */
+    width: 100%;
+    z-index: 1;
+  }
+
+  /* Hide the nav-slideshow on small screens */
+  .nav-slideshow {
+    display: none;
+  }
+
+  /* Adjust layout for main, text sections, right side, and footer */
+  main {
+    grid-template-columns: 1fr; /* Change to a single column layout */
+    grid-template-rows: auto auto auto auto auto; /* Add rows for each section */
+    grid-template-areas:
+      "side-nav"
+      "main-text"
+      "right-side"
+      "footer";
+  }
+
+  #main-text-homepage,
+  .right-side {
+    text-align: center; /* Optional: Center text within sections */
+  }
+
+  /* Right Side Styles */
+  .right-side {
+    grid-area: right-side;
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center; /* Center items horizontally within the container */
+    padding: 20px;
+  }
+
+  /* Right Side Slideshow */
+  .right-side-slideshow {
+    width: 80%; /* Adjust the width as needed */
+    max-width: 400px; /* Set a maximum width if desired */
+    margin: 0 auto; /* Center the slideshow horizontally */
+    position: relative;
+  }
+
+  /* Adjust Footer Image Size */
+  footer img {
+    max-width: 100%; /* Make the image responsive */
+    height: auto; /* Maintain the aspect ratio */
+  }
+}
+/* Media Queries for Mobile and Tablets - Adjust Banner Size, Hamburger Menu Styles, and Responsive Layout -- END -- */
